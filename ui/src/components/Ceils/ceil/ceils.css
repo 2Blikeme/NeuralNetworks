@@ -1,0 +1,8 @@
+
+.square {
+    width: 30px;
+    height: 30px;
+    border: thin solid;
+    border-color: grey;
+    position: relative;
+}

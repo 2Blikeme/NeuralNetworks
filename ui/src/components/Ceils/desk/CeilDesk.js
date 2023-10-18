@@ -1,18 +1,30 @@
 import React, {useState} from 'react';
 import CeilRow from "../row/CeilRow";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
+import {minHeight, minWidth} from "../../../consts";
 
-const CeilDesk = () => {
-
-	const [numRows, setNumRows] = useState(3)
+const CeilDesk = ({
+					  disabled = false,
+					  lowSize = false,
+					  matrix,
+				  }) => {
 	const count = useSelector((state) => state.ceils.height)
+
+	const rows = []
+	for (let i = 0; i < count; i++) {
+		rows.push(
+			<CeilRow key={i}
+					 rowKey={{value: i}}
+					 lowSize={lowSize}
+					 disabled={disabled}
+			/>
+		)
+	}
 
 	return (
 		<div>
 			{
-				Array.from({length: count}).fill(
-					<CeilRow />
-				)
+				rows
 			}
 		</div>
 	);

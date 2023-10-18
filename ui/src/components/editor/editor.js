@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import "./editor.css"
-import {maxHeight, maxWidth, minHeight, minWidth} from "../../../consts";
+import {maxHeight, maxWidth, minHeight, minWidth} from "../../consts";
 import {useDispatch, useSelector} from "react-redux";
-import {changeHeight, changeWidth} from "../../../store/slices/ceilSlice";
+import {changeHeight, changeWidth} from "../../store/slices/ceilSlice";
 
 const Editor = () => {
 
 	const [width, setWidth] = useState()
 	const [height, setHeight] = useState()
-
 
 	const dispatch = useDispatch()
 
@@ -40,9 +39,6 @@ const Editor = () => {
 	}
 
 	const isNumber = (str) => {
-		if (str.trim() === '') {
-			return false;
-		}
 		return !isNaN(str);
 	}
 

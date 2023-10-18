@@ -6,3 +6,11 @@
     border-color: grey;
     position: relative;
 }
+.low-size-square {
+    width: 10px;
+    height: 10px;
+    border: thin solid;
+    border-color: grey;
+    position: relative;
+}
+

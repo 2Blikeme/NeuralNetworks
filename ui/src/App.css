@@ -1,5 +1,26 @@
 
 * {
-    background-color: #373737
-;
+    background-color: #f3f3f3;
+}
+
+.App {
+    padding: 20px;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 30%;
+    background-color: #373737;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.container {
+    display: flex;
+}
+
+.saved-values-container {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
 }

@@ -1,15 +1,17 @@
 import React from 'react';
 import './custom_button.css'
 
-function Custom_button({
+function CustomButton({
 						  buttonText = '',
 						  styles,
 					  }) {
 	return (
-		<button className={"button"} style={styles}>
-			{buttonText}
-		</button>
+		<div className={"button-container"}>
+			<button className={"button"} style={styles}>
+				{buttonText}
+			</button>
+		</div>
 	);
 }
 
-export default Custom_button;
+export default CustomButton;

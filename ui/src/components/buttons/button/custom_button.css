@@ -1,4 +1,9 @@
 
+.button-container {
+    display: flex;
+}
+
 .button {
+    width: 100%;
     font-size: 17px;
 }

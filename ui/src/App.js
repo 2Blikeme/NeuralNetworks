@@ -1,6 +1,6 @@
 import Ceil_desk from "./components/Ceils/desk/ceil_desk";
 import "./App.css"
-import Saved_values from "./components/editor/saved_values";
+import SavedValues from "./components/editor/saved_values";
 
 function App() {
 	return (
@@ -10,12 +10,13 @@ function App() {
 					<Ceil_desk/>
 				</div>
 				<div className={"saved-values-container"}>
-					<Saved_values name={'A1'}/>
-					<Saved_values name={'A2'}/>
-					<Saved_values name={'B1'}/>
-					<Saved_values name={'B2'}/>
-					<Saved_values name={'C'}/>
+					<SavedValues name={'A1'}/>
+					<SavedValues name={'A2'}/>
+					<SavedValues name={'B1'}/>
+					<SavedValues name={'B2'}/>
+					<SavedValues name={'C'}/>
 				</div>
+
 			</div>
 		</div>
 	);

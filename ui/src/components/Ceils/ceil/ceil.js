@@ -7,7 +7,6 @@ import {changeMatrix} from "../../../store/slices/ceil_slice";
 const Ceil = ({
 				  ceilKey,
 				  disabled = false,
-				  lowSize = false,
 			  }) => {
 	const [clicked, setClicked] = useState(false)
 
@@ -26,7 +25,7 @@ const Ceil = ({
 	})
 
 	return (
-		<div key={ceilKey} className={lowSize ? "low-size-square" : "square"}
+		<div key={ceilKey} className={"square"}
 			 style={{
 				 backgroundColor: clicked ? 'black' : 'white',
 			 }}

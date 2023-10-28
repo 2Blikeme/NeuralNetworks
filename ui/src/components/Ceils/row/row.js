@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Ceil from "../ceil/ceil";
 import './row.css'
 import {useSelector} from "react-redux";
@@ -7,7 +7,6 @@ const Row = ({
 					 matrixVector,
 					 rowKey,
 					 disabled = false,
-					 lowSize = false,
 				 }) => {
 	const length = useSelector((state) => state.ceils.width)
 
@@ -16,7 +15,6 @@ const Row = ({
 		cells.push(
 			<Ceil key={i}
 				  ceilKey={{i: rowKey.value, j: i}}
-				  lowSize={lowSize}
 				  disabled={disabled}/>
 		)
 	}

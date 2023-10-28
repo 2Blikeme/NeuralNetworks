@@ -1,17 +1,16 @@
 import React from 'react';
-import Custom_button from "../buttons/button/custom_button";
-import Ceil_desk from "../Ceils/desk/ceil_desk";
+import CustomButton from "../buttons/button/custom_button";
+import CeilDesk from "../Ceils/desk/ceil_desk";
 import './saved_values.css'
 
-function Saved_values({name}) {
+function SavedValues({name}) {
 
 	return (
-		<div className={"container"}>
-			<Custom_button buttonText={name}/>
-			<Ceil_desk disabled={true}
-					   lowSize={true}/>
+		<div className={"saved-matrix-container"}>
+			<CustomButton buttonText={name}/>
+			<CeilDesk disabled={true}/>
 		</div>
 	);
 }
 
-export default Saved_values;
+export default SavedValues;

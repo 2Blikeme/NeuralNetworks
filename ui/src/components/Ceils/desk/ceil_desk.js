@@ -3,9 +3,8 @@ import Row from "../row/row";
 import {useSelector} from "react-redux";
 import './ceil_desk.css'
 
-const Ceil_desk = ({
+const CeilDesk = ({
 					  disabled = false,
-					  lowSize = false,
 					  matrix,
 				  }) => {
 	const count = useSelector((state) => state.ceils.height)
@@ -15,14 +14,13 @@ const Ceil_desk = ({
 		rows.push(
 			<Row key={i}
 				 rowKey={{value: i}}
-				 lowSize={lowSize}
 				 disabled={disabled}
 			/>
 		)
 	}
 
 	return (
-		<div className={'container'}>
+		<div className={'row-container'}>
 			{
 				rows
 			}
@@ -30,4 +28,4 @@ const Ceil_desk = ({
 	);
 };
 
-export default Ceil_desk;
+export default CeilDesk;

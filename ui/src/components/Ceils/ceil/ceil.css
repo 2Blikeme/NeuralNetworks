@@ -4,9 +4,3 @@
     flex: 1 0;
     border: thin solid grey;
 }
-
-.low-size-square {
-    aspect-ratio: 1 / 1;
-    flex: 1 0;
-    border: thin solid grey;
-}

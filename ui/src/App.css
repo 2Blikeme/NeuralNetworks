@@ -5,6 +5,19 @@
 
 .App {
     padding: 20px;
+    height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: column;
+    width: 50%;
+}
+
+.matrix-container {
+    display: flex;
+    width: 50%;
 }
 
 .buttonContainer {
@@ -15,12 +28,7 @@
     margin: 10px;
 }
 
-.container {
-    display: flex;
-}
-
 .saved-values-container {
     display: flex;
     justify-content: space-between;
-    width: 50%;
 }

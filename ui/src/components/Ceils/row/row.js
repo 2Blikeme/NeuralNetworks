@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import Ceil from "../ceil/Ceil";
+import Ceil from "../ceil/ceil";
 import './row.css'
 import {useSelector} from "react-redux";
 
-const CeilRow = ({
+const Row = ({
 					 matrixVector,
 					 rowKey,
 					 disabled = false,
@@ -30,4 +30,4 @@ const CeilRow = ({
 	);
 };
 
-export default CeilRow;
+export default Row;

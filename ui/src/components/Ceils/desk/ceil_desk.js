@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import CeilRow from "../row/CeilRow";
+import React from 'react';
+import Row from "../row/row";
 import {useSelector} from "react-redux";
-import {minHeight, minWidth} from "../../../consts";
+import './ceil_desk.css'
 
-const CeilDesk = ({
+const Ceil_desk = ({
 					  disabled = false,
 					  lowSize = false,
 					  matrix,
@@ -13,16 +13,16 @@ const CeilDesk = ({
 	const rows = []
 	for (let i = 0; i < count; i++) {
 		rows.push(
-			<CeilRow key={i}
-					 rowKey={{value: i}}
-					 lowSize={lowSize}
-					 disabled={disabled}
+			<Row key={i}
+				 rowKey={{value: i}}
+				 lowSize={lowSize}
+				 disabled={disabled}
 			/>
 		)
 	}
 
 	return (
-		<div>
+		<div className={'container'}>
 			{
 				rows
 			}
@@ -30,4 +30,4 @@ const CeilDesk = ({
 	);
 };
 
-export default CeilDesk;
+export default Ceil_desk;

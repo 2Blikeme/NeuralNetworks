@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {ceilSlice} from "./slices/ceilSlice";
+import {ceil_slice} from "./slices/ceil_slice";
 
 export default configureStore({
 	reducer: {
-		ceils: ceilSlice.reducer
+		ceils: ceil_slice.reducer
 	},
 })

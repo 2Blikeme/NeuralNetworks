@@ -5,7 +5,7 @@ const createCleanMatrix = (n, m) => {
 	return Array.from({length: n}, () => Array(m).fill(0));
 }
 
-export const ceilSlice = createSlice({
+export const ceil_slice = createSlice({
 	name: 'ceils',
 	initialState: {
 		width: minWidth,
@@ -14,15 +14,6 @@ export const ceilSlice = createSlice({
 	},
 	reducers:
 		{
-			changeWidth: (state, action) => {
-				state.width = action.payload
-				state.matrix = createCleanMatrix(state.height, state.width)
-			},
-			changeHeight:
-				(state, action) => {
-					state.height = action.payload
-					state.matrix = createCleanMatrix(state.height, state.width)
-				},
 			changeMatrix:
 				(state, action) => {
 					const {i, j} = action.payload.key
@@ -35,9 +26,7 @@ export const ceilSlice = createSlice({
 })
 
 export const {
-	changeWidth,
-	changeHeight,
 	changeMatrix,
-} = ceilSlice.actions
+} = ceil_slice.actions
 
-export default ceilSlice.reducer
+export default ceil_slice.reducer

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import './ceils.css'
-import {useDispatch, useSelector} from "react-redux";
-import {changeMatrix} from "../../../store/slices/ceilSlice";
+import './ceil.css'
+import {useDispatch} from "react-redux";
+import {changeMatrix} from "../../../store/slices/ceil_slice";
 
 
 const Ceil = ({
@@ -27,7 +27,9 @@ const Ceil = ({
 
 	return (
 		<div key={ceilKey} className={lowSize ? "low-size-square" : "square"}
-			 style={{backgroundColor: clicked ? 'black' : 'white'}}
+			 style={{
+				 backgroundColor: clicked ? 'black' : 'white',
+			 }}
 			 onClick={clickHandler}>
 		</div>
 	);

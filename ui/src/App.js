@@ -1,13 +1,14 @@
-import Ceil_desk from "./components/Ceils/desk/ceil_desk";
+import CeilDesk from "./components/ceils/desk/ceil_desk";
 import "./App.css"
 import SavedValues from "./components/editor/saved_values";
+import Data_input from "./components/data_input/data_input";
 
 function App() {
 	return (
 		<div className="App">
 			<div className={"app-container"}>
 				<div className={"matrix-container"}>
-					<Ceil_desk/>
+					<Data_input />
 				</div>
 				<div className={"saved-values-container"}>
 					<SavedValues name={'A1'}/>

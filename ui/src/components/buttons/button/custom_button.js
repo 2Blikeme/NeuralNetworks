@@ -6,11 +6,9 @@ function CustomButton({
 						  styles,
 					  }) {
 	return (
-		<div className={"button-container"}>
-			<button className={"button"} style={styles}>
-				{buttonText}
-			</button>
-		</div>
+		<button className={"button"} style={styles}>
+			{buttonText}
+		</button>
 	);
 }
 

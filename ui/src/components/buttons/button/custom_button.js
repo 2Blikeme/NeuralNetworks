@@ -3,10 +3,10 @@ import './custom_button.css'
 
 function CustomButton({
 						  buttonText = '',
-						  styles,
+						  styles, onClick,
 					  }) {
 	return (
-		<button className={"button"} style={styles}>
+		<button onClick={onClick} className={"button"} style={styles}>
 			{buttonText}
 		</button>
 	);

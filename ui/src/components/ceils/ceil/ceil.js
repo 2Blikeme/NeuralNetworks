@@ -6,9 +6,9 @@ import {changeMatrix} from "../../../store/slices/ceil_slice";
 
 const Ceil = ({
 				  ceilKey,
+				  ceilValue,
 				  disabled = false,
 			  }) => {
-	const [clicked, setClicked] = useState(false)
 
 	const dispatch = useDispatch()
 
@@ -19,15 +19,14 @@ const Ceil = ({
 				key: ceilKey,
 				// если true  - белый цвет
 				// если false - черный цвет
-				changeColor: true,
+				changeColor: ceilValue !== 1,
 			}))
-		setClicked(!clicked)
 	})
 
 	return (
 		<div key={ceilKey} className={"square"}
 			 style={{
-				 backgroundColor: clicked ? 'black' : 'white',
+				 backgroundColor: ceilValue === 1 ? 'black' : 'white',
 			 }}
 			 onClick={clickHandler}>
 		</div>

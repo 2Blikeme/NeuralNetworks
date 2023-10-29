@@ -15,6 +15,7 @@ const Row = ({
 		cells.push(
 			<Ceil key={i}
 				  ceilKey={{i: rowKey.value, j: i}}
+				  ceilValue={matrixVector ? matrixVector[i] : 0}
 				  disabled={disabled}/>
 		)
 	}

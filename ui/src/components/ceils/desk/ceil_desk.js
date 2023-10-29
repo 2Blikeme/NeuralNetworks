@@ -15,6 +15,7 @@ const CeilDesk = ({
 			<Row key={i}
 				 rowKey={{value: i}}
 				 disabled={disabled}
+				 matrixVector={matrix ? matrix[i] : null}
 			/>
 		)
 	}

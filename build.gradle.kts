@@ -24,6 +24,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis:3.1.5")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.3")
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+
 }
 
 tasks.withType<KotlinCompile> {

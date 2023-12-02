@@ -12,12 +12,21 @@ class MatrixService(val redisService: RedisService) {
      * Сохраняет матрицу
      */
     fun saveMatrix(matrixDto: MatrixDto) {
-        val matrix = Matrix(matrix = matrixDto.matrix)
-        redisService.saveMatrix(matrixDto.id, matrix)
+        redisService.saveMatrix(matrixDto.id, matrixDto.matrix)
     }
 
     fun findMatrixById(id: String): Matrix? {
         return redisService.findMatrixById(id)
+    }
+
+    fun findByIds(ids: List<String>): List<MatrixDto> {
+        val matrixMap = redisService.findByIds(ids)
+
+        val matrixDtoList: MutableList<MatrixDto> = mutableListOf()
+        matrixMap.entries.forEach {
+            matrixDtoList.add(MatrixDto(it.key, it.value))
+        }
+        return matrixDtoList
     }
 
 }

@@ -1,6 +1,7 @@
 package com.neural.nets.ns_first_lab.redis
 
 import com.neural.nets.ns_first_lab.dto.MatrixDto
+import com.neural.nets.ns_first_lab.entity.Matrix
 import com.neural.nets.ns_first_lab.enums.MatrixIndexes
 import com.neural.nets.ns_first_lab.service.MatrixService
 import org.junit.jupiter.api.Test
@@ -19,7 +20,7 @@ class RedisTest {
     @Test
     fun saveMatrixTest() {
         val m = Array(5) { IntArray(5) { 0 } }
-        val matrixDto = MatrixDto(MatrixIndexes.A1.name, m)
+        val matrixDto = MatrixDto(MatrixIndexes.A1.name, Matrix(m))
 
         matrixService.saveMatrix(matrixDto)
         val savedMatrix = matrixService.findMatrixById(MatrixIndexes.A1.name)

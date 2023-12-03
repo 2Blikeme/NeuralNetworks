@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {minHeight, minWidth} from "../../consts";
+import {minHeight, minWidth} from "../../consts/consts";
 
 const createCleanMatrix = (n, m) => {
 	return Array.from({length: n}, () => Array(m).fill(0));

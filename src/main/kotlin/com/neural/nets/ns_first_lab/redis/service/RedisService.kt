@@ -22,4 +22,10 @@ class RedisService(val redisTemplate: RedisTemplate<String, Matrix>) {
     fun findByIds(ids: List<String>): MutableMap<String, Matrix> {
         return redisTemplate.opsForHash<String, Matrix>().entries(matrixMapName)
     }
+
+    fun deleteByIds(ids: List<String>) {
+        for (id in ids) {
+            redisTemplate.opsForHash<String, Matrix>().delete(matrixMapName, id)
+        }
+    }
 }

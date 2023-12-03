@@ -29,4 +29,7 @@ class MatrixService(val redisService: RedisService) {
         return matrixDtoList
     }
 
+    fun deleteMatrixByIds(ids: List<String>) {
+        redisService.deleteByIds(ids)
+    }
 }

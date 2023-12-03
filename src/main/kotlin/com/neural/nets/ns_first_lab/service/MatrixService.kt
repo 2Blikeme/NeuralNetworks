@@ -12,7 +12,7 @@ class MatrixService(val redisService: RedisService) {
      * Сохраняет матрицу
      */
     fun saveMatrix(matrixDto: MatrixDto) {
-        redisService.saveMatrix(matrixDto.id, matrixDto.matrix)
+        redisService.saveMatrix(matrixDto.id, matrixDto.matrixInfo)
     }
 
     fun findMatrixById(id: String): Matrix? {

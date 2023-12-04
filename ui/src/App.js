@@ -1,14 +1,13 @@
-import CeilDesk from "./components/ceils/desk/ceil_desk";
 import "./App.css"
 import SavedValues from "./components/editor/saved_values";
-import Data_input from "./components/data_input/data_input";
+import DataInput from "./components/data_input/data_input";
 
 function App() {
 	return (
 		<div className="App">
 			<div className={"app-container"}>
 				<div className={"matrix-container"}>
-					<Data_input />
+					<DataInput />
 				</div>
 				<div className={"saved-values-container"}>
 					<SavedValues name={'A1'}/>
@@ -17,7 +16,6 @@ function App() {
 					<SavedValues name={'B2'}/>
 					<SavedValues name={'C'}/>
 				</div>
-
 			</div>
 		</div>
 	);

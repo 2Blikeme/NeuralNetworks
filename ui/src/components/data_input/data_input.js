@@ -14,10 +14,15 @@ function DataInput(props) {
 		dispatch(clearMatrix())
 	}
 
+	const trainButtonClickListener = () => {
+
+	}
+
 	return (
 		<div className={"data-input-container"}>
 			<CeilDesk matrix={inputMatrix}/>
 			<CustomButton onClick={clearDataButtonListener} buttonText={'Clear'}/>
+			<CustomButton onClick={trainButtonClickListener} buttonText={'Train'}/>
 		</div>
 	);
 }

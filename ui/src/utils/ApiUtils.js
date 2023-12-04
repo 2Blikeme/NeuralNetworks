@@ -9,11 +9,10 @@ export const getRequest = (url, body) => {
 }
 
 export const postRequest = (url, body) => {
-	axios.post(url, {
-		data: body,
-	}).then((response) => {
-		return response
-	})
+	axios.post(url, body)
+		.then((response) => {
+			return response
+		})
 }
 
 export const deleteRequest = (url, body) => {

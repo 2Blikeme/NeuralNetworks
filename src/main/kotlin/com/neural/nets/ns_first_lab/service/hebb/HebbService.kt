@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class HebbService : NeuronNetwork {
 
-    override fun train(data: TrainDataDto, metaData: Map<String, Any>): List<Int> {
+    fun train(data: TrainDataDto, metaData: Map<String, Any>): List<Int> {
         val activationMode = HebbMetadataKeys.valueOf(metaData[HebbMetadataKeys.activationMode.name].toString())
 
         val activatedVectors = prepareTrainData(data,
@@ -25,18 +25,6 @@ class HebbService : NeuronNetwork {
         do {
             sFinished.fill(0)
             resultWeights.fill(0)
-            if (tries != 0) {
-
-//                for (i in sFinished.indices) {
-//                    if (sFinished[i] != yTr[i]) {
-//                        yTr[i] = when (activationMode) {
-//                            HebbMetadataKeys.BIPOLAR -> yTr[i] * -1
-//                            HebbMetadataKeys.BINARY -> if (yTr[i] == 0) 1 else 0
-//                            else -> continue
-//                        }
-//                    }
-//                }
-            }
 
             for (i in 0 until data.answersDataVector.size) {
                 data.dataVectors[i].forEachIndexed { index, value ->

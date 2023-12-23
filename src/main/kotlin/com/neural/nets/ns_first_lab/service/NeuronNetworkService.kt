@@ -8,6 +8,7 @@ import com.neural.nets.ns_first_lab.enums.MatrixIndexes
 import com.neural.nets.ns_first_lab.redis.service.ArrayRedisService
 import com.neural.nets.ns_first_lab.redis.service.MatrixRedisService
 import com.neural.nets.ns_first_lab.redis.service.ObjectRedisService
+import com.neural.nets.ns_first_lab.service.delta_rule.DeltaRuleService
 import com.neural.nets.ns_first_lab.service.hebb.HebbService
 import org.springframework.stereotype.Service
 
@@ -16,29 +17,22 @@ class NeuronNetworkService(
     val hebbService: HebbService,
     val matrixRedisService: MatrixRedisService,
     val arrayRedisService: ArrayRedisService,
-    val objectRedisService: ObjectRedisService
+    val objectRedisService: ObjectRedisService,
+    val deltaRuleService: DeltaRuleService
 ) {
 
     fun trainWithHebbRule(metadata: MutableMap<String, Any>): Unit {
 
-        val ids = MatrixIndexes.values().filter {
-            it.name != MatrixIndexes.C.name
-        }.map {
-            it.name
-        }.toList()
+        val ids = listOf(
+            MatrixIndexes.A1.name,
+            MatrixIndexes.A2.name,
+            MatrixIndexes.B1.name,
+            MatrixIndexes.B2.name
+        )
 
         val savedMatrices = matrixRedisService.findByIds(ids).filter {
             it.key != MatrixIndexes.C.name
         }.toSortedMap().values.toList()
-
-//        val answ = mutableListOf<Int>()
-//        for (i in savedMatrices.indices) {
-//            answ.add(when (metadata[HebbMetadataKeys.activationMode.name]) {
-//                HebbMetadataKeys.BIPOLAR.name -> if (i % 2 == 0) 1 else -1
-//                HebbMetadataKeys.BINARY.name -> if (i % 2 == 0) 1 else 0
-//                else -> throw Exception()
-//            })
-//        }
 
 
         val answ = when (metadata[HebbMetadataKeys.activationMode.name]) {
@@ -51,20 +45,96 @@ class NeuronNetworkService(
         metadata["y_tr"] = answ
         val weigths = hebbService.train(trainData, metadata)
         arrayRedisService.saveIntArray(HebbMetadataKeys.weigths.name, weigths)
-        objectRedisService.saveObject(HebbMetadataKeys.presentation.name,
-            metadata[HebbMetadataKeys.activationMode.name].toString())
+        objectRedisService.saveObject(
+            HebbMetadataKeys.presentation.name,
+            metadata[HebbMetadataKeys.activationMode.name].toString()
+        )
     }
 
-    fun predictByHebb() : ResponseResultDto {
+    fun predictByHebb(): ResponseResultDto {
         val savedMatrix = matrixRedisService.findMatrixById(MatrixIndexes.C.name) ?: throw Exception()
 
         val presentation = objectRedisService.findObjectById(HebbMetadataKeys.presentation.name) ?: throw Exception()
-        val formedData = formToTrainData(listOf(savedMatrix), List(1) {0})
+        val formedData = formToTrainData(listOf(savedMatrix), List(1) { 0 })
         val weights = arrayRedisService.findIntArrayById(HebbMetadataKeys.weigths.name) ?: throw Exception()
 
         val predictedClass = hebbService.predict(formedData, weights, HebbMetadataKeys.valueOf(presentation.toString()))
 
         return ResponseResultDto(mutableMapOf("predictedClass" to predictedClass))
+
+    }
+
+    fun trainWithDeltaRule(metadata: MutableMap<String, Any>): MutableList<MutableList<Double>> {
+        val ids = listOf(
+            MatrixIndexes.A1.name,
+            MatrixIndexes.A2.name,
+            MatrixIndexes.B1.name,
+            MatrixIndexes.B2.name,
+            MatrixIndexes.C1.name,
+            MatrixIndexes.C2.name,
+            MatrixIndexes.D1.name,
+            MatrixIndexes.D2.name,
+            MatrixIndexes.E1.name,
+            MatrixIndexes.E2.name,
+        )
+        val savedMatrices = matrixRedisService.findByIds(ids).filter {
+            it.key != MatrixIndexes.C.name
+        }.toSortedMap().values.toList()
+
+
+        val dataVectors = mutableListOf<MutableList<Int>>()
+        for (savedMatrix in savedMatrices) {
+            if (savedMatrix == null) {
+                throw Exception()
+            }
+            val matrixVector = mutableListOf(1)
+            savedMatrix.matrix.map { row ->
+                row.map { el ->
+                    matrixVector.add(el)
+                }
+            }
+            dataVectors.add(matrixVector)
+        }
+
+        val answ = mutableListOf(
+            mutableListOf(1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1),
+            mutableListOf(1, -1, -1, 1, 1, -1, -1, -1, -1, -1, -1),
+            mutableListOf(1, -1, -1, -1, -1, 1, 1, -1, -1, -1, -1),
+            mutableListOf(1, -1, -1, -1, -1, -1, -1, 1, 1, -1, -1),
+            mutableListOf(1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1),
+
+        )
+
+        return deltaRuleService.train(dataVectors, answ, metadata)
+
+    }
+
+    fun predictByDeltaRule(): Int {
+        val savedMatrix = matrixRedisService.findMatrixById(MatrixIndexes.C.name) ?: throw Exception()
+        val weights = arrayRedisService.findIntArrayById(HebbMetadataKeys.weigths.name) ?: throw Exception()
+
+
+        val matrixVector = mutableListOf(1)
+        savedMatrix.matrix.map { row ->
+            row.map { el ->
+                matrixVector.add(el)
+            }
+        }
+
+        deltaRuleService.predict(matrixVector, weights)
+
+
+
+
+
+//
+//        val formedData = formToTrainData(listOf(savedMatrix), List(1) { 0 })
+//        val weights = arrayRedisService.findIntArrayById(HebbMetadataKeys.weigths.name) ?: throw Exception()
+//
+//        val predictedClass = hebbService.predict(formedData, weights, HebbMetadataKeys.valueOf(presentation.toString()))
+//
+//        return ResponseResultDto(mutableMapOf("predictedClass" to predictedClass))
+
 
     }
 

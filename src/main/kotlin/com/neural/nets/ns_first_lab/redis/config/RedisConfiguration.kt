@@ -31,9 +31,37 @@ class RedisConfiguration {
         template.connectionFactory = connectionFactory
         template.keySerializer = GenericToStringSerializer(String::class.java)
         template.valueSerializer = GenericToStringSerializer(Matrix::class.java)
+
         template.valueSerializer = GenericJackson2JsonRedisSerializer()
         template.hashKeySerializer = GenericJackson2JsonRedisSerializer()
         template.hashValueSerializer = GenericJackson2JsonRedisSerializer()
         return template
+    }
+
+    @Bean
+    fun intArrayRedisTemplate(connectionFactory: RedisConnectionFactory) :RedisTemplate<String, List<Int>> {
+        val template = RedisTemplate<String, List<Int>>()
+        template.connectionFactory = connectionFactory
+        template.keySerializer = GenericToStringSerializer(String::class.java)
+        template.valueSerializer = GenericToStringSerializer(List::class.java)
+
+        template.valueSerializer = GenericJackson2JsonRedisSerializer()
+        template.hashKeySerializer = GenericJackson2JsonRedisSerializer()
+        template.hashValueSerializer = GenericJackson2JsonRedisSerializer()
+        return template
+    }
+
+    @Bean
+    fun objectRedisTemplate(connectionFactory: RedisConnectionFactory) :RedisTemplate<String, Any> {
+        val template = RedisTemplate<String, Any>()
+        template.connectionFactory = connectionFactory
+        template.keySerializer = GenericToStringSerializer(String::class.java)
+        template.valueSerializer = GenericToStringSerializer(Any::class.java)
+
+        template.valueSerializer = GenericJackson2JsonRedisSerializer()
+        template.hashKeySerializer = GenericJackson2JsonRedisSerializer()
+        template.hashValueSerializer = GenericJackson2JsonRedisSerializer()
+        return template
+
     }
 }

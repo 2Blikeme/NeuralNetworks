@@ -7,7 +7,7 @@ function App() {
 		<div className="App">
 			<div className={"app-container"}>
 				<div className={"matrix-container"}>
-					<DataInput />
+					<DataInput/>
 				</div>
 				<div className={"saved-values-container"}>
 					<SavedValues name={'A1'}/>
@@ -16,7 +16,9 @@ function App() {
 					<SavedValues name={'B2'}/>
 					<SavedValues name={'C'}/>
 				</div>
+
 			</div>
+
 		</div>
 	);
 }

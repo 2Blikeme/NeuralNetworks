@@ -1,11 +1,13 @@
 import React from 'react';
 import './logPanel.css'
 
-function LogPanel(props) {
+function LogPanel({props, text}) {
 
 	return (
 		<div className={"panel"}>
-			asdasd
+			{
+				text
+			}
 		</div>
 	);
 }

@@ -35,6 +35,6 @@ class ObjectsTest {
         val matrixDto : MatrixDto = objectMapper.readValue(file.readText())
 
         assert(matrixDto.id == MatrixIndexes.A1.name)
-        assert(matrixDto.matrix.matrix.contentDeepEquals(m))
+        assert(matrixDto.matrixInfo.matrix.contentDeepEquals(m))
     }
 }
